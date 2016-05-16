@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory :answer do
-    title 'MyString'
-    body 'MyString'
+    sequence(:title){ |n| "Answer Title #{n}"}
+    body 'Answer body text'
+    question
+    user
   end
 
   factory :invalid_answer, parent: :answer do

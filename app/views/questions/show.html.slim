@@ -1,0 +1,13 @@
+h1 = @question.title
+p = @question.body
+- if user_signed_in?
+  p = link_to 'Create answer', new_question_answer_path(@question)
+  - if @question.user == current_user
+    p = link_to "DELETE QUESTION #{@question.id}", question_path(@question), method: :delete
+ul
+  - @question.answers.each do |answer|
+    li
+      h3 = answer.title
+      p = answer.body
+      - if answer.user == current_user
+        p = link_to "DELETE Answer #{answer.id}", question_answer_path(answer, question_id: answer.question), method: :delete
